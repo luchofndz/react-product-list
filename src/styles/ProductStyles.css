@@ -13,3 +13,8 @@
 .product-image__footer-text {
   text-align: start;
 }
+.description-container {
+  text-align: left;
+  padding: 0px 20px 20px 20px;
+  align-self: baseline;
+}
