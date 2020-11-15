@@ -1,0 +1,15 @@
+.product {
+  display: flex;
+  padding: 40px;
+}
+.image-buttons-container {
+  margin-top: -58px;
+  padding: 10px;
+  display: flex;
+}
+.image-buttons-container button:last-child {
+  margin-left: auto;
+} 
+.product-image__footer-text {
+  text-align: start;
+}

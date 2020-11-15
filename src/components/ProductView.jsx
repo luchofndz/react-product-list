@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { getProductById } from '../api/productsApi';
-// import '../styles/DashboardMainStyles.css';
+import '../styles/ProductStyles.css';
 import { Button, Toast } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
@@ -19,7 +19,6 @@ export function ProductView(props) {
   const setProductValues = async () => {
     if (id) {
       const response = await getProductById(parseInt(id));
-      debugger;
       if (response) {
         setProduct(response);
       }
@@ -42,23 +41,30 @@ export function ProductView(props) {
       </Toast>
       <div className="product">
         <div>
-          <img src={product.PictureURL} alt="product"></img>
           <div>
-            <Button variant="danger">Clearance</Button>
-            <Button variant="danger">Free Shipping</Button>
+            <img src={product.PictureURL ? product.PictureURL : ''} alt="product"></img>
+            <div className="image-buttons-container">
+              <Button variant="danger">Clearance</Button>
+              <Button variant="danger">Free Shipping</Button>
+            </div>
+          </div>
+          <div className="product-image__footer-text">
+            <p><b>Brand: </b>{product.Brand ? product.Brand : ''}</p>
+            <p><b>Color: </b>{product.Color ? product.Color : ''}</p>
           </div>
         </div>
         <div>
-          <p><b>Brand:</b>{product.Brand ? product.Brand : ''}</p>
-          <p><b>Color:</b>{product.Color ? product.Color : ''}</p>
+          <h3>{product.Name ? product.Name : ''}</h3>
+          <p>{product.Description ? product.Description : ''}</p>
         </div>
+       
         <div>
           <div>
 
           </div>
           <div>
-            {product.stock 
-              ? <p>Available</p>
+            {product.Stock 
+              ? <p>Available {product.Stock} units</p>
               : <p>Out of Stock</p>
             }
             <Button onClick={() => setShow(true)}>Show Toast</Button>
