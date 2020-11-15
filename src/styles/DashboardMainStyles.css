@@ -9,6 +9,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+}
+.description-container p { 
+  align-self: flex-start;
 }
 .detail-product {
   align-self: flex-start;

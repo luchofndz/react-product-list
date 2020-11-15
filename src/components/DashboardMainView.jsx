@@ -29,7 +29,7 @@ export function DashboardMainView(props) {
     let arrayOfPRoducts = null;
     arrayOfPRoducts = products.map((item, index) => {
       return (
-        <div className="product-view" key={index+1} >
+        <div className="product-view" key={item.ProductID} >
           <div className="detail-product">
             <img src={item.ThumbnailURL} alt="product"></img>
             <div className="description-container">
@@ -41,7 +41,7 @@ export function DashboardMainView(props) {
             </div>
           </div>
           <div className="button-container">
-            <Button variant="success" onClick={(item) => handleOnClickButton(item)}>
+            <Button variant="success" onClick={() => handleOnClickButton(item)}>
               View Details
             </Button>
           </div>
@@ -56,12 +56,20 @@ export function DashboardMainView(props) {
   return (
     <div className="products-main-container">
       {products && productsView()}
-      {navigate && 
+      {navigate && selectedProduct &&
         <Redirect 
           to={{
-            pathname: "/Product",
+          pathname: `/product/${selectedProduct.ProductID}`,
             state: {
-              imageUrl: selectedProduct.PictureURL
+              product: selectedProduct.PictureURL,
+              brand: selectedProduct.Brand,
+              color: selectedProduct.Color,
+              name: selectedProduct.Name,
+              description: selectedProduct.Description,
+              stock: selectedProduct.Stock,
+              price: selectedProduct.Price,
+              retailPrice: selectedProduct.RetailPrice,
+              productId: selectedProduct.ProductID
             }
           }}
         />
