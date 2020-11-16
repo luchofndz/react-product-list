@@ -1,4 +1,5 @@
 Views:
+
 1 - product list: localhost:3000/home
 
 2 - product: localhost:3000/product/id 
