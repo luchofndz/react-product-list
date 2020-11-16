@@ -41,7 +41,11 @@ export function DashboardMainView(props) {
             </div>
           </div>
           <div className="button-container">
-            <Button variant="success" onClick={() => handleOnClickButton(item)}>
+            <Button 
+              variant="success" 
+              className="shadow-none" 
+              onClick={() => handleOnClickButton(item)}
+            >
               View Details
             </Button>
           </div>
@@ -59,18 +63,7 @@ export function DashboardMainView(props) {
       {navigate && selectedProduct &&
         <Redirect 
           to={{
-          pathname: `/product/${selectedProduct.ProductID}`,
-            state: {
-              product: selectedProduct.PictureURL,
-              brand: selectedProduct.Brand,
-              color: selectedProduct.Color,
-              name: selectedProduct.Name,
-              description: selectedProduct.Description,
-              stock: selectedProduct.Stock,
-              price: selectedProduct.Price,
-              retailPrice: selectedProduct.RetailPrice,
-              productId: selectedProduct.ProductID
-            }
+          pathname: `/product/${selectedProduct.ProductID}`
           }}
         />
         }

@@ -2,12 +2,12 @@ import { React, useEffect, useState } from 'react';
 import ReactStars from 'react-stars'
 import { getProductById } from '../api/productsApi';
 import '../styles/ProductStyles.css';
-import { Button, Toast } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
 
 export function ProductView(props) {
-  const [show, setShow] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [product, setProduct] = useState(null);
   const [stars, setStars] = useState(0);
   const { id } = useParams();
@@ -16,7 +16,7 @@ export function ProductView(props) {
     if (id) {
       setProductValues();
     }
-  },[id]);
+  },[]);
 
   const setProductValues = async () => {
     if (id) {
@@ -40,30 +40,32 @@ export function ProductView(props) {
       setStars(roundedNumber);
     }
   };
-  console.log("stars", stars);
+  
+  const openToastFunction = () => {
+    setShowToast(true);
+    setTimeout (
+      () => setShowToast(false), 
+      7000
+    );
+  };
                                                                                                  
   return (
     <div className="product-main-container">
-      <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
-        <Toast.Header>
-          <img
-            src="holder.js/20x20?text=%20"
-            className="rounded mr-2"
-            alt=""
-          />
-          <strong className="mr-auto">Bootstrap</strong>
-          <small>11 mins ago</small>
-        </Toast.Header>
-        <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
-      </Toast>
+      {showToast &&
+        <div className="toast-container">
+          <div className="toast-success">
+            <h4>Product added successfully!</h4>
+          </div>
+        </div>
+      }
       {product && 
         <div className="product">
           <div>
             <div>
               <img src={product.PictureURL ? product.PictureURL : ''} alt="product"></img>
               <div className="image-buttons-container">
-                <Button variant="danger">Clearance</Button>
-                <Button variant="danger">Free Shipping</Button>
+                <Button variant="danger" className="shadow-none">Clearance</Button>
+                <Button variant="danger" className="shadow-none">Free Shipping</Button>
               </div>
             </div>
             <div className="product-image__footer-text">
@@ -80,23 +82,35 @@ export function ProductView(props) {
               value={stars}
               edit={false}
             />
-            <p>{product.Description ? product.Description : ''}</p>
+            <p>
+              {(product.Description && product.Description.length > 1000) 
+                ? (product.Description.substring(0, 1000) + '...') 
+                : product.Description 
+              }
+              {/* {TODO: implement read more functionality} */}
+            </p>
           </div>
-          <div>
+          <div className="add-to-cart-container">
             <div className="price-container">
               <p>
                 {product.Price ? product.Price : ''}
+              </p>
+              <p>
                 <strike className="strike-price">
                   {product.RetailPrice ? product.RetailPrice : ''}
                 </strike>
               </p>
             </div>
-            <div>
+            <div className="stock-container">
               {product.Stock 
-                ? <p>Available {product.Stock} units</p>
-                : <p>Out of Stock</p>
+                ? <p className="available">Available {product.Stock} units</p>
+                : <p className="out">Out of Stock</p>
               }
-              <Button variant="success" onClick={() => setShow(true)}>
+              <Button 
+                variant="success" 
+                className="shadow-none" 
+                onClick={() => openToastFunction()}
+              >
                 Add to Cart
               </Button>
             </div>

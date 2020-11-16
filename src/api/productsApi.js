@@ -16,7 +16,6 @@ export const getDataFromDb = async () => {
       });
   });
   if (promise) {
-    console.log(promise);
     return promise;
   }
 };
@@ -37,7 +36,6 @@ export const getProductById = async (productId) => {
       });
   });
   if (promise) {
-    console.log(promise);
     return promise;
   }
 };

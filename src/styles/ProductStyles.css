@@ -1,20 +1,81 @@
-.product {
+.product-main-container .toast-container {
+  position: absolute;
+  justify-content: center;
+  padding-right: 10%;
+  padding-left: 10%;
+  width: 100%;
+  opacity: 0.6;
+}
+.product-main-container .toast-container .toast-success {
+  color: rgb(255, 255, 255);
+  background-color: rgb(21, 143, 21);
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 23px;
+  font-weight: 900;
+}
+.product-main-container .product {
   display: flex;
   padding: 40px;
+  color: rgb(138, 133, 133);
 }
-.image-buttons-container {
+.product-main-container .product img {
+  border: 1px solid rgb(0, 0, 0);
+}
+.product-main-container .image-buttons-container {
   margin-top: -58px;
   padding: 10px;
   display: flex;
 }
-.image-buttons-container button:last-child {
+.product-main-container .image-buttons-container button {
+  background-color: rgb(250, 91, 17);
+  border-color: rgb(250, 91, 17);
+  width: 126px;
+}
+.product-main-container .image-buttons-container button:last-child {
   margin-left: auto;
 } 
-.product-image__footer-text {
+.product-main-container .product-image__footer-text {
   text-align: start;
 }
-.description-container {
+.product-main-container .product-image__footer-text p:first-child{
+  margin-bottom: 0px;
+  margin-top: 15px;
+}
+.product-main-container .description-container {
   text-align: left;
   padding: 0px 20px 20px 20px;
   align-self: baseline;
+}
+.product-main-container .description-container h3 {
+  margin-bottom: -5px;
+}
+.product-main-container .description-container p {
+  padding-top: 20px;
+}
+.product-main-container .stock-container button {
+  min-width: 150px;
+}
+.product-main-container .stock-container .available {
+  color: rgb(0, 128, 0);
+}
+.product-main-container .stock-container .out {
+  color: rgb(255, 0, 0);
+}
+.product-main-container .price-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60%;
+}
+.product-main-container .price-container p:first-child {
+  font-size: 30px;
+}
+.product-main-container .price-container p:last-child {
+  font-size: 20px;
+  margin-left: 12px;
+}
+.product-main-container .add-to-cart-container {
+  padding-left: 30px;
 }
